@@ -219,6 +219,10 @@ public class TestApp extends BaseClass {
 	public void groceryOrder() {
 		System.out.println("Grocery Order");		
 	}
+	
+	public void omrBranch() {
+		System.out.println("omr branch");
+	}
 	public static void main(String[] args) throws InterruptedException {
 		TestApp app = new TestApp();
 		app.bookHotel();
