@@ -1,6 +1,9 @@
 package com;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class TestApp extends BaseClass {
 	public void bookHotel() throws InterruptedException {
@@ -207,6 +210,102 @@ public class TestApp extends BaseClass {
 		textAlertMsg = LocatorByXpath("//li[@class='alertMsg']");
 		alertMsgText = getText(textAlertMsg);
 		System.out.println(alertMsgText);
+		
+		WebElement btnGrocery = LocatorByXpath("//a[text()='Grocery']");
+		elementClick(btnGrocery);
+		
+		WebElement txtSearchGro = driver.findElement(By.id("search"));
+		txtSearchGro.sendKeys("nuts");
+		
+		WebElement btnSearchGro = driver.findElement(By.xpath("//button[@data-testid='searchbtn']"));
+		btnSearchGro.click();
+		
+		WebElement searchResults = driver.findElement(By.xpath("//h5[contains(text(),'Search Result')]"));
+		String searchTextGro = searchResults.getText();
+		System.out.println(searchTextGro); 
+
+		WebElement btnYogabars = driver.findElement(By.xpath("//a[contains(@class,'addBtn-17')]"));
+		btnYogabars.click();
+		
+		WebElement btnAdd = driver.findElement(By.id("cart-21"));
+		btnAdd.click();
+		
+		JavascriptExecutor executor=(JavascriptExecutor)driver;
+		WebElement btnGoToCart = driver.findElement(By.xpath("//a[text()=' Go To Cart ']"));
+		executor.executeScript("arguments[0].click()", btnGoToCart);
+		
+		WebElement myCart = driver.findElement(By.xpath("//h5[text()='My Cart']"));
+		String myCartText = myCart.getText();
+		System.out.println(myCartText);
+		
+		WebElement btnAddress = driver.findElement(By.xpath("//div[@data-target='#addressModal']"));
+		btnAddress.click();
+		
+		WebElement ddnAddressType = driver.findElement(By.id("address_type"));
+		Select addType = new Select(ddnAddressType);
+		addType.selectByIndex(3);
+		
+		WebElement txtFirstNameGro = driver.findElement(By.name("first_name"));
+		txtFirstNameGro.sendKeys("Dinesh");
+		
+		WebElement txtLastNameGro = driver.findElement(By.name("last_name"));
+		txtLastNameGro.sendKeys("Kumar");
+		
+		WebElement txtMobileNo = driver.findElement(By.name("mobile"));
+		txtMobileNo.sendKeys("7236598109");
+		
+		WebElement txtAddLine1 = driver.findElement(By.name("apartment"));
+		txtAddLine1.sendKeys("No:58");
+		
+		WebElement txtAddLine2 = driver.findElement(By.name("address"));
+		txtAddLine2.sendKeys("Madhavaram");
+		
+		WebElement ddnStateGro = driver.findElement(By.name("state"));
+		Select state= new Select(ddnStateGro);
+		state.selectByIndex(35);
+		
+		WebElement ddnCity = driver.findElement(By.name("city"));
+		Select city = new Select(ddnCity);
+		city.selectByValue("3659");
+		
+		WebElement btnZipcode = driver.findElement(By.name("zipcode"));
+		btnZipcode.sendKeys("600001");
+		
+		WebElement btnSave = driver.findElement(By.xpath("//button[contains(@class,'saveAddress')]"));
+		btnSave.click();
+		
+		Thread.sleep(2000);
+		WebElement btnDebitCard = driver.findElement(By.xpath("//option[text()=' Debit Card ']"));
+		btnDebitCard.click();
+		
+		WebElement btnVisa = driver.findElement(By.xpath("//label[@for='visa_card']"));
+		btnVisa.click();
+		
+		WebElement txtCardNoGro = driver.findElement(By.name("card_no"));
+		txtCardNoGro.sendKeys("5555555555552222");
+		
+		WebElement ddnMonth = driver.findElement(By.id("month"));
+		Select month = new Select(ddnMonth);
+		month.selectByIndex(6);
+		
+		WebElement ddnYear = driver.findElement(By.id("year"));
+		Select year= new Select(ddnYear);
+		year.selectByIndex(3);
+		
+		WebElement txtCvv = driver.findElement(By.name("cvv"));
+		txtCvv.sendKeys("655");
+		
+		WebElement btnPlaceOrder = driver.findElement(By.id("placeOrder"));
+		btnPlaceOrder.click();
+		
+		WebElement orderNo = driver.findElement(By.xpath("(//p[@class='font18 color20 fontSemiBold mb-0'])[1]"));
+		String text = orderNo.getText();
+		System.out.println(text);
+		
+		WebElement order = driver.findElement(By.xpath("(//span[@class='font16 fontNormal color36'])[1]"));
+		String text2 = order.getText();
+		System.out.println(text2);
+
 		
 }
 	public static void main(String[] args) throws InterruptedException {
